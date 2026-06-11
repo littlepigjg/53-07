@@ -7,6 +7,7 @@ import shareRouter from './routes/share.js';
 import annotationsRouter from './routes/annotations.js';
 import reviewRouter from './routes/review.js';
 import exportRouter from './routes/export.js';
+import testsRouter from './routes/tests.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { FileStorageService } from './services/FileStorageService.js';
 
@@ -29,8 +30,9 @@ app.use('/api/share', shareRouter);
 app.use('/api/annotations', annotationsRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/export', exportRouter);
+app.use('/api/tests', testsRouter);
 
-app.get(['/', '/review/*', '/admin/*'], (_req, res) => {
+app.get(['/', '/review/*', '/admin/*', '/tests'], (_req, res) => {
   res.sendFile(path.join(distDir, 'index.html'));
 });
 

@@ -80,3 +80,96 @@ export const exportApi = {
       text: await r.text(),
     })),
 };
+
+export interface TestReport {
+  id: string;
+  timestamp: string;
+  suites: TestSuiteResultApi[];
+  total: number;
+  passed: number;
+  failed: number;
+  skipped: number;
+  errored: number;
+  duration: number;
+  passRate: number;
+}
+
+export interface TestSuiteResultApi {
+  suite: string;
+  results: TestResultApi[];
+  total: number;
+  passed: number;
+  failed: number;
+  skipped: number;
+  errored: number;
+  duration: number;
+}
+
+export interface TestResultApi {
+  testCaseId: string;
+  name: string;
+  suite: string;
+  status: string;
+  duration: number;
+  assertions: AssertionResultApi[];
+  error?: string;
+  timestamp: string;
+}
+
+export interface AssertionResultApi {
+  name: string;
+  passed: boolean;
+  message: string;
+  expected?: string;
+  actual?: string;
+}
+
+export interface TestCaseApi {
+  id: string;
+  name: string;
+  suite: string;
+  description: string;
+  tags: string[];
+  fixture?: string;
+  version: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface TestCaseExportApi {
+  version: string;
+  exportedAt: string;
+  testCases: TestCaseApi[];
+  suites: string[];
+}
+
+export const testsApi = {
+  list: () => request<TestCaseApi[]>('/tests'),
+  listSuites: () => request<string[]>('/tests/suites'),
+  search: (query: { suite?: string; name?: string; tags?: string[] }) => {
+    const params = new URLSearchParams();
+    if (query.suite) params.set('suite', query.suite);
+    if (query.name) params.set('name', query.name);
+    if (query.tags?.length) params.set('tags', query.tags.join(','));
+    return request<TestCaseApi[]>(`/tests/search?${params.toString()}`);
+  },
+  run: (options?: { suite?: string; parallel?: boolean }) =>
+    request<TestReport>('/tests/run', {
+      method: 'POST',
+      body: JSON.stringify({ parallel: true, ...options }),
+    }),
+  import: (data: TestCaseExportApi) =>
+    request<{ imported: number }>('/tests/import', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+  export: (suiteNames?: string[]) => {
+    const params = suiteNames?.length ? `?suite=${suiteNames.join(',')}` : '';
+    return request<TestCaseExportApi>(`/tests/export${params}`);
+  },
+  remove: (id: string) =>
+    request<{ ok: true }>(`/tests/${id}`, { method: 'DELETE' }),
+  listBaselines: () => request<string[]>('/tests/baselines'),
+  deleteBaseline: (id: string) =>
+    request<{ ok: true }>(`/tests/baselines/${id}`, { method: 'DELETE' }),
+};

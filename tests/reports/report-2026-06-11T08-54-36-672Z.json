@@ -1,0 +1,311 @@
+{
+  "id": "1781168076672-448g7l5p",
+  "timestamp": "2026-06-11T08:54:36.672Z",
+  "suites": [
+    {
+      "suite": "heading",
+      "results": [
+        {
+          "testCaseId": "heading-levels-correct",
+          "name": "Heading levels are correctly parsed",
+          "suite": "heading",
+          "status": "passed",
+          "duration": 3,
+          "assertions": [
+            {
+              "name": "headingLevels",
+              "passed": true,
+              "message": "All heading levels and content match"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.651Z"
+        },
+        {
+          "testCaseId": "heading-sequence-valid",
+          "name": "Heading sequence is valid in simple document",
+          "suite": "heading",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "headingSequence",
+              "passed": true,
+              "message": "Heading sequence is valid"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.652Z"
+        },
+        {
+          "testCaseId": "heading-skip-level-invalid",
+          "name": "Heading skip level is detected as invalid",
+          "suite": "heading",
+          "status": "passed",
+          "duration": 4,
+          "assertions": [
+            {
+              "name": "headingSequence",
+              "passed": false,
+              "message": "Heading level skip from H1 to H3 at paragraph p_mq99hfu4_s428a6",
+              "expected": "No heading level skips (max change of 1)",
+              "actual": "H1 -> H3"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.656Z"
+        },
+        {
+          "testCaseId": "heading-empty-doc",
+          "name": "Empty document has no headings",
+          "suite": "heading",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "documentNotEmpty",
+              "passed": false,
+              "message": "Document has no paragraphs",
+              "expected": "At least 1 paragraph",
+              "actual": "0 paragraphs"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.657Z"
+        }
+      ],
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "errored": 0,
+      "duration": 9
+    },
+    {
+      "suite": "list",
+      "results": [
+        {
+          "testCaseId": "list-closure-valid",
+          "name": "List closure is valid in simple document",
+          "suite": "list",
+          "status": "passed",
+          "duration": 2,
+          "assertions": [
+            {
+              "name": "listClosure",
+              "passed": true,
+              "message": "All list paragraphs have proper markers"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.651Z"
+        },
+        {
+          "testCaseId": "list-closure-deeply-nested",
+          "name": "List closure passes for deeply nested lists",
+          "suite": "list",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "listClosure",
+              "passed": true,
+              "message": "All list paragraphs have proper markers"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.652Z"
+        },
+        {
+          "testCaseId": "list-boundary-oversized",
+          "name": "List closure passes for oversized document",
+          "suite": "list",
+          "status": "passed",
+          "duration": 4,
+          "assertions": [
+            {
+              "name": "listClosure",
+              "passed": true,
+              "message": "All list paragraphs have proper markers"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.656Z"
+        }
+      ],
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "errored": 0,
+      "duration": 7
+    },
+    {
+      "suite": "code-block",
+      "results": [
+        {
+          "testCaseId": "code-block-highlight-present",
+          "name": "Code block has language highlight identifier",
+          "suite": "code-block",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "codeBlockHighlight",
+              "passed": true,
+              "message": "All code blocks have language identifiers"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.651Z"
+        },
+        {
+          "testCaseId": "code-block-unclosed",
+          "name": "Unclosed code block is detected",
+          "suite": "code-block",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "codeBlockClosure",
+              "passed": false,
+              "message": "Unclosed code block detected: found 1 fence markers (odd number)",
+              "expected": "Even number of code fence markers",
+              "actual": "1 markers"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.652Z"
+        },
+        {
+          "testCaseId": "code-block-highlight-missing",
+          "name": "Code block without language tag produces warning",
+          "suite": "code-block",
+          "status": "passed",
+          "duration": 2,
+          "assertions": [
+            {
+              "name": "codeBlockHighlight",
+              "passed": true,
+              "message": "Warnings: Paragraph p_mq99hfu6_1oltxc: code block without language identifier"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.656Z"
+        }
+      ],
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "errored": 0,
+      "duration": 6
+    },
+    {
+      "suite": "boundary",
+      "results": [
+        {
+          "testCaseId": "boundary-empty-doc",
+          "name": "Empty document fails documentNotEmpty",
+          "suite": "boundary",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "documentNotEmpty",
+              "passed": false,
+              "message": "Document has no paragraphs",
+              "expected": "At least 1 paragraph",
+              "actual": "0 paragraphs"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.651Z"
+        },
+        {
+          "testCaseId": "boundary-malformed-html",
+          "name": "Malformed HTML is detected by noRawHtml",
+          "suite": "boundary",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "noRawHtml",
+              "passed": false,
+              "message": "Found raw HTML in 1 paragraph(s): p_mq99hfu4_vxpy3o",
+              "expected": "No raw HTML tags",
+              "actual": "HTML found in 1 paragraph(s)"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.652Z"
+        },
+        {
+          "testCaseId": "boundary-oversized-doc",
+          "name": "Oversized document passes documentNotEmpty and has many paragraphs",
+          "suite": "boundary",
+          "status": "passed",
+          "duration": 2,
+          "assertions": [
+            {
+              "name": "documentNotEmpty",
+              "passed": true,
+              "message": "Document has 570 paragraph(s)"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.656Z"
+        },
+        {
+          "testCaseId": "boundary-deeply-nested",
+          "name": "Deeply nested list passes listClosure",
+          "suite": "boundary",
+          "status": "passed",
+          "duration": 1,
+          "assertions": [
+            {
+              "name": "listClosure",
+              "passed": true,
+              "message": "All list paragraphs have proper markers"
+            }
+          ],
+          "timestamp": "2026-06-11T08:54:36.657Z"
+        }
+      ],
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "errored": 0,
+      "duration": 7
+    },
+    {
+      "suite": "regression",
+      "results": [
+        {
+          "testCaseId": "regression-simple-doc-baseline",
+          "name": "Simple document baseline comparison shows no regression",
+          "suite": "regression",
+          "status": "passed",
+          "duration": 14,
+          "assertions": [],
+          "timestamp": "2026-06-11T08:54:36.670Z"
+        },
+        {
+          "testCaseId": "regression-heading-skip-detect",
+          "name": "Heading skip document baseline comparison matches itself",
+          "suite": "regression",
+          "status": "passed",
+          "duration": 2,
+          "assertions": [],
+          "timestamp": "2026-06-11T08:54:36.672Z"
+        }
+      ],
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "errored": 0,
+      "duration": 16
+    }
+  ],
+  "total": 16,
+  "passed": 16,
+  "failed": 0,
+  "skipped": 0,
+  "errored": 0,
+  "duration": 45,
+  "passRate": 100,
+  "environment": {
+    "node": "v24.16.0",
+    "platform": "win32",
+    "timestamp": "2026-06-11T08:54:36.672Z"
+  }
+}
